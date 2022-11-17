@@ -3,9 +3,9 @@
  */
 const styleguidePlugin = (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
-    i18n: {
+    i18n: !process.env.EXPORT_MODE && {
       ...nextConfig.i18n,
-      locales: ['en', 'es'],
+      locales: ['en'],
     },
   });
 };

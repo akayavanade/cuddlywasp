@@ -19,11 +19,15 @@ const nextConfig = {
   env: {
     PUBLIC_URL: publicUrl,
   },
-
-  i18n: {
+  //exportPathMap: 'src/pages',
+  images: {
+    unoptimized: !!process.env.EXPORT_MODE
+  },
+  
+  i18n: !process.env.EXPORT_MODE && {
     // These are all the locales you want to support in your application.
     // These should generally match (or at least be a subset of) those in Sitecore.
-    locales: ['en'],
+    locales: ['en', 'es'],
     // This is the locale that will be used when visiting a non-locale
     // prefixed path e.g. `/styleguide`.
     defaultLocale: packageConfig.language,
@@ -32,8 +36,7 @@ const nextConfig = {
   // Enable React Strict Mode
   reactStrictMode: true,
 
-  async rewrites() {
-    // When in connected mode we want to proxy Sitecore paths off to Sitecore
+  rewrites: !process.env.EXPORT_MODE && (async () => {
     return [
       // API endpoints
       {
@@ -51,7 +54,11 @@ const nextConfig = {
         destination: `${jssConfig.sitecoreApiHost}/layouts/system/:path*`,
       },
     ];
-  },
+  })
+  // async rewrites() {
+  //   // When in connected mode we want to proxy Sitecore paths off to Sitecore
+   
+  // },
 };
 
 module.exports = () => {
