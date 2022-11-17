@@ -1,0 +1,9 @@
+{
+  "sitecore": {
+    "instancePath": "",
+    "apiKey": "{B56DF2CA-6091-4263-B4DD-32C452D02C70}",
+    "deploySecret": "jl14woyyxpld508icodgfh04u93fgja5ivp9kmuuko",
+    "deployUrl": "https://merckmanuals-cm.sitecoredemo.com/sitecore/api/jss/import",
+    "layoutServiceHost": "https://merckmanuals-cm.sitecoredemo.com"
+  }
+}
