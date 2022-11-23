@@ -52,11 +52,21 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
   let paths: StaticPath[] = [];
   let fallback: boolean | 'blocking' = 'blocking';
-
+  console.log('SSG CONTEXt', context);
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
   if (process.env.NODE_ENV !== 'development') {
     try {
       // Note: Next.js runs export in production mode
+      // for (let index = 0; index < context.locales.length; index++) {
+      //   context.defaultLocale = context.locales[index];
+      //   const localePaths = await sitemapFetcher.fetch(context);
+      //   paths = [...paths, ...localePaths];
+      // }
       paths = await sitemapFetcher.fetch(context);
+      // for (let i = 0; i < paths.length; i++) {
+      //   //console.log(`paths[${i}]`);
+      //   console.dir(paths[i].params.path);
+      // }
     } catch (error) {
       console.log('Error occurred while generating static paths');
       console.log(error);

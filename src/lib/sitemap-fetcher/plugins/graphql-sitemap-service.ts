@@ -19,6 +19,7 @@ class GraphqlSitemapServicePlugin implements SitemapFetcherPlugin {
       otherwise, the service will attempt to figure out the root item for the current JSS App using GraphQL and app name.
       rootItemId: '{GUID}'
       */
+     rootItemId: '{52D101EC-0F13-5608-844B-604BE0ABC2ED}',
     });
   }
 
@@ -26,9 +27,12 @@ class GraphqlSitemapServicePlugin implements SitemapFetcherPlugin {
     if (process.env.EXPORT_MODE) {
       // Disconnected Export mode
       if (process.env.JSS_MODE !== 'disconnected') {
-        return this._graphqlSitemapService.fetchExportSitemap(pkg.config.language);
+        console.log('***fetchExportSitemap', pkg.config.language);
+        const locale = context?.defaultLocale || pkg.config.language;
+        return this._graphqlSitemapService.fetchExportSitemap(locale);
       }
     }
+    console.log('***fetchSSGSitemap', context?.locales);
     return this._graphqlSitemapService.fetchSSGSitemap(context?.locales || []);
   }
 }

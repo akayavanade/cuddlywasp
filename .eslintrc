@@ -13,7 +13,7 @@
     "prettier",
     "yaml"
   ],
-  "ignorePatterns": [".generated/**/*", "**/*.d.ts", "**/*.js"],
+  "ignorePatterns": ["*",".generated/**/*", "**/*.d.ts", "**/*.js"],
   "rules": {
     "@next/next/no-img-element": "off", // Don't force next/image
     "jsx-a11y/alt-text": ["warn", { "elements": ["img"] }], // Don't force alt for <Image/> (sourced from Sitecore media)

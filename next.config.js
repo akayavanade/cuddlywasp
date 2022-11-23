@@ -11,7 +11,7 @@ const publicUrl = getPublicUrl();
 const nextConfig = {
   // Set assetPrefix to our public URL
   assetPrefix: publicUrl,
-
+  staticPageGenerationTimeout: 3600, 
   // Allow specifying a distinct distDir when concurrently running app in a container
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
 
@@ -24,10 +24,10 @@ const nextConfig = {
     unoptimized: !!process.env.EXPORT_MODE
   },
   
-  i18n: !process.env.EXPORT_MODE && {
+  i18n: {
     // These are all the locales you want to support in your application.
     // These should generally match (or at least be a subset of) those in Sitecore.
-    locales: ['en', 'es'],
+    locales: ['en', 'es', 'ko'],
     // This is the locale that will be used when visiting a non-locale
     // prefixed path e.g. `/styleguide`.
     defaultLocale: packageConfig.language,
@@ -55,10 +55,6 @@ const nextConfig = {
       },
     ];
   })
-  // async rewrites() {
-  //   // When in connected mode we want to proxy Sitecore paths off to Sitecore
-   
-  // },
 };
 
 module.exports = () => {
