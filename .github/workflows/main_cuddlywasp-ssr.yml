@@ -64,14 +64,14 @@ jobs:
           name: node-app
           
       - name: Un7z release
-        run: 7z x release.7z ./release/
+        run: 7z x release.7z -o ./release/
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'cuddlywasp-ssr'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
-          package: ./release/
-          startup-command: npm run start:production
+      #- name: 'Deploy to Azure Web App'
+      #  id: deploy-to-webapp
+      #  uses: azure/webapps-deploy@v2
+      #  with:
+      #    app-name: 'cuddlywasp-ssr'
+      #    slot-name: 'Production'
+      #    publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
+      #    package: ./release/
+      #    startup-command: npm run start:production
