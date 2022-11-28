@@ -31,15 +31,6 @@ jobs:
           npm install
           npm run bootstrap --if-present
           npm run next:build --if-present
-          
-      #- name: 'Deploy to Azure Web App'
-      #  id: deploy-to-webapp
-      #  uses: azure/webapps-deploy@v2
-      #  with:
-      #    app-name: 'cuddlywasp-ssr'
-      #    slot-name: 'Production'
-      #    publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
-      #    package: .
       
       - name: 7z release
         run: 7z a -t7z -mx=9 release.7z .
@@ -64,14 +55,14 @@ jobs:
           name: node-app
           
       - name: Un7z release
-        run: 7z x release.7z -o ./release/
+        run: 7z x release.7z
 
-      #- name: 'Deploy to Azure Web App'
-      #  id: deploy-to-webapp
-      #  uses: azure/webapps-deploy@v2
-      #  with:
-      #    app-name: 'cuddlywasp-ssr'
-      #    slot-name: 'Production'
-      #    publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
-      #    package: ./release/
-      #    startup-command: npm run start:production
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'cuddlywasp-ssr'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
+          package: .
+          startup-command: npm run start:production
