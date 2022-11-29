@@ -12,6 +12,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    environment:
+      name: 'Production'
+      url: 'https://cuddlywasp-ssg.azurewebsites.net'
 
     steps:
       - uses: actions/checkout@v2
@@ -27,24 +30,30 @@ jobs:
           npm run build --if-present
           npm run test --if-present
       
+      - name: 7z release
+        run: 7z a -t7z -mx=9 -bb1 release.7z .
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: release.7z
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: 'https://cuddlywasp-ssg.azurewebsites.net'
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
           name: node-app
+      
+      - name: Un7z release
+        run: 7z x release.7z -bb1
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
