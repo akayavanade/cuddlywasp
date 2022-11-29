@@ -17,5 +17,5 @@ steps:
 
 - script: |
     npm install
-    REACT_APP_ENV=production npm run build
+    NODE_ENV=production npm run build
   displayName: 'npm install and build'
