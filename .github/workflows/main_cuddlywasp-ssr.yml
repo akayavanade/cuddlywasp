@@ -12,9 +12,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    #environment:
+    #  name: 'Production'
+    #  url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
       - uses: actions/checkout@v2
