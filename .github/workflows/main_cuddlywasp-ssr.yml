@@ -40,27 +40,27 @@ jobs:
           name: node-app
           path: release.7z
 
-  #deploy:
-  #  runs-on: ubuntu-latest
-  #  needs: build
-  #  environment:
-  #    name: 'Production'
-  #    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-  #  steps:
-  #    - name: Download artifact from build job
-  #      uses: actions/download-artifact@v3.0.1
-  #      with:
-  #        name: node-app
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3.0.1
+        with:
+          name: node-app
           
-  #    - name: Un7z release
-  #      run: 7z x release.7z -bb1
+      - name: Un7z release
+        run: 7z x release.7z -bb1
 
-  #    - name: 'Deploy to Azure Web App'
-  #      id: deploy-to-webapp
-  #      uses: azure/webapps-deploy@v2
-  #      with:
-  #        app-name: 'cuddlywasp-ssr'
-  #        slot-name: 'Production'
-  #        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
-  #        package: .
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'cuddlywasp-ssr'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A348225F04304E33B09091748BE07580 }}
+          package: .
