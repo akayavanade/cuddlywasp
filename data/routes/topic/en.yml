@@ -1,0 +1,13 @@
+fields:
+  pageTitle: Topic Page POC with JSON Data
+placeholders:
+  jss-main:
+    - componentName: ContentBlock
+      fields:
+        heading: This is a POC of a topic page
+        content: |
+          <p>Data on this page should be rendered from the JSON stored on the server</p>
+    - componentName: JsonComponent
+      fields:
+        json: |
+          {"key1": "value1"}
