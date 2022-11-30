@@ -89,7 +89,7 @@
     "start": "cross-env-shell JSS_MODE=disconnected \"npm-run-all --serial bootstrap --parallel next:dev start:disconnected-proxy start:watch-components\"",
     "start:connected": "npm-run-all --serial bootstrap --parallel next:dev start:watch-components",
     "start:disconnected-proxy": "ts-node --project tsconfig.scripts.json ./scripts/disconnected-mode-proxy.ts",
-    "start:production": "npm-run-all --serial bootstrap next:build next:start:production",
+    "start:production": "npm-run-all --serial next:build next:start:production",
     "start:watch-components": "ts-node --project tsconfig.scripts.json scripts/generate-component-factory.ts --watch",
     "export": "cross-env-shell JSS_MODE=disconnected PORT=3042 EXPORT_MODE=true \"npm-run-all --serial bootstrap next:build next:export\"",
     "export:connected": "cross-env-shell EXPORT_MODE=false \"npm-run-all --serial bootstrap next:build next:export:connected\""
