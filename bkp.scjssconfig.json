@@ -1,9 +1,9 @@
 {
   "sitecore": {
     "instancePath": "",
-    "apiKey": "{F6D85A0B-EC16-4A17-B7E4-38D743F71D1D}",
+    "apiKey": "{7C2FF1E9-C6BC-4AA6-845A-E00307FDBB05}",
     "deploySecret": "jl14woyyxpld508icodgfh04u93fgja5ivp9kmuuko",
-    "deployUrl": "https://cuddlywasp-cm.sitecoredemo.com/sitecore/api/jss/import",
-    "layoutServiceHost": "https://cuddlywasp-cm.sitecoredemo.com"
+    "deployUrl": "https://mm-poc-xmscaled-cm.azurewebsites.net/sitecore/api/jss/import",
+    "layoutServiceHost": "https://mm-poc-xmscaled-cm.azurewebsites.net"
   }
 }
